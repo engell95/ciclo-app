@@ -20,23 +20,24 @@
                     <div class="card col-sm-12 mt-3 border-0 shadow-lg">
                         <div class="container">
                             @if ($errors->any())
-                                <div class="alert alert-danger">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
                                         @endforeach
                                     </ul>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             @endif
                             <form action="{{route('users.store')}}" method="POST">
                                 <div class="row">
                                     <div class="col-sm-12 mt-2">
-                                        <input type="text" class="form-control form-control-sm" placeholder="Nombre" name="name" id="name" tabindex="1" maxlength="255"/>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Nombre" name="name" id="name" tabindex="1" maxlength="255" value="{{old('name')}}"/>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-sm-6">
-                                        <input type="email" class="form-control form-control-sm" placeholder="Correo" name="email" id="email" tabindex="2"/>
+                                        <input type="email" class="form-control form-control-sm" placeholder="Correo" name="email" id="email" tabindex="2" value="{{old('email')}}"/>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-sm" placeholder="Contrasena" name="password" id="password" tabindex="3"/>
