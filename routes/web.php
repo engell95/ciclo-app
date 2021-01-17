@@ -15,6 +15,6 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', [UserController::class, 'index']);
-Route::post('users', [UserController::class, 'store']);
+Route::post('users', [UserController::class, 'store'])->name('users.store');
 Route::post('users/edit/{user}', [UserController::class, 'update']);
-Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');;
+Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');

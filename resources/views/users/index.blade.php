@@ -17,7 +17,40 @@
         <div class="container-fluid">
             <div class="row">
                 <div class='col-sm-8 mx-auto'>
-                    <table class="table table-bordered">
+                    <div class="card col-sm-12 mt-3 border-0 shadow-lg">
+                        <div class="container">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form action="{{route('users.store')}}" method="POST">
+                                <div class="row">
+                                    <div class="col-sm-12 mt-2">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Nombre" name="name" id="name" tabindex="1" maxlength="255"/>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-6">
+                                        <input type="email" class="form-control form-control-sm" placeholder="Correo" name="email" id="email" tabindex="2"/>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-sm" placeholder="Contrasena" name="password" id="password" tabindex="3"/>
+                                    </div>
+                                </div>
+                                <div class="col-auto mt-2">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
+                                </div>
+                                <div class="mt-2"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <table class="table table-bordered mt-3">
                         <thead>
                             <tr>
                                 <th>ID</th>
