@@ -20,7 +20,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'name'      => 'required|min:2|max:255',
             'email'     => 'required|email:rfc,dns|unique:users|max:255',
-            'password'  => 'required|password:api'
+            'password'  => 'required'
         ]);
 
         $users = User::create([

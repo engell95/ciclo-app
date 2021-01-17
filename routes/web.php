@@ -14,7 +14,15 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [UserController::class, 'index']);
-Route::post('users', [UserController::class, 'store'])->name('users.store');
-Route::post('users/edit/{user}', [UserController::class, 'update']);
-Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+//Route::middleware(['auth'])->group(function () {
+
+    Route::get('/', [UserController::class, 'index']);
+    Route::post('users', [UserController::class, 'store'])->name('users.store');
+    Route::post('users/edit/{user}', [UserController::class, 'update']);
+    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+//});
+
+Route::get('login', function () {
+    return view('welcome');
+})->name('login');
