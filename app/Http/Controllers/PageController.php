@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Page;
-use Illuminate\Http\Request;
+use App\Http\Requests\PageRequest;
 
 class PageController extends Controller
 {
@@ -15,6 +15,7 @@ class PageController extends Controller
     public function index()
     {
         //
+        return view('page.index',['title' => 'Paginas']);
     }
 
     /**
@@ -33,9 +34,9 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PageRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -67,7 +68,7 @@ class PageController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Page $page)
+    public function update(PageRequest $request, Page $page)
     {
         //
     }

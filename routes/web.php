@@ -14,15 +14,19 @@ use App\Http\Controllers\UserController;
 |
 */
 
-//Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/', [UserController::class, 'index']);
     Route::post('users', [UserController::class, 'store'])->name('users.store');
     Route::post('users/edit/{user}', [UserController::class, 'update']);
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-//});
+});
 
 Route::get('login', function () {
     return view('welcome');
 })->name('login');
+
+//CLASE 9 VALIDACIONES
+
+Route::resource('page', 'PageController');
