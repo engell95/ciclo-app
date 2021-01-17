@@ -30,3 +30,9 @@ Route::get('login', function () {
 //CLASE 9 VALIDACIONES
 
 Route::resource('page', 'PageController');
+
+//CLASE 10 BLADE AVANZADOS
+
+Route::get('home',function(){
+    return view('home',['title' => 'home']);
+});
