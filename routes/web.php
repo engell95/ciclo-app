@@ -33,6 +33,12 @@ Route::resource('page', 'PageController');
 
 //CLASE 10 BLADE AVANZADOS
 
-Route::get('home',function(){
-    return view('home',['title' => 'home']);
+Route::get('page/home',function(){
+    return view('page.home',['title' => 'home']);
 });
+
+//CLASE 11 componente Laravel/UI
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
