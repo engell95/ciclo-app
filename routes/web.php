@@ -43,6 +43,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//CLASE 12 trabajando con este ORM
+//CLASE 12 trabajando con eloquent ORM
 
 Route::resource('employee','EmployeeController');
+
+//CLASE 13 trabajando con eloquent ORM relaciones
+
+Route::resource('post','PostController');
