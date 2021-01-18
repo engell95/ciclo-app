@@ -50,3 +50,21 @@ Route::resource('employee','EmployeeController');
 //CLASE 13 trabajando con eloquent ORM relaciones
 
 Route::resource('post','PostController');
+
+//CLASE 14 Colecciones y serialización de datos
+use App\User;
+Route::get('collections',function(){
+    $users = User::all();
+    //dd($users->contains(5));
+    //dd($users->except([1,2,3]));
+    //dd($users->only(1));
+    //dd($users->find(4));
+    dd($users->load('posts'));
+});
+
+Route::get('serialization',function(){
+    $users = User::all();
+    //dd($users->toArray());
+    $user = $users->find(4);
+    dd($user->json());
+});
