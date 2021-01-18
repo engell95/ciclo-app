@@ -42,3 +42,7 @@ Route::get('page/home',function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//CLASE 12 trabajando con este ORM
+
+Route::resource('employee','EmployeeController');
