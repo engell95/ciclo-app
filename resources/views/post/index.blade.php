@@ -18,7 +18,8 @@
                     <td>{{$post->description}}</td>
                     <td>{{$post->user->name}}</td>
                     <td>
-                        <form action="{{route('page.store')}}" method="POST">
+                        <form action="{{route('post.destroy', $post)}}" method="POST">
+                            @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                         </form>
