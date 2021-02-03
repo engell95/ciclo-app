@@ -39,7 +39,6 @@ Route::get('page/home',function(){
 
 //CLASE 11 componente Laravel/UI
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
