@@ -82,5 +82,7 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         //
+        $page->delete();
+        return back();
     }
 }
