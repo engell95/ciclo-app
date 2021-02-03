@@ -14,14 +14,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware(['auth'])->group(function () {
+/*Route::middleware(['auth'])->group(function () {
 
     Route::get('/', [UserController::class, 'index']);
     Route::post('users', [UserController::class, 'store'])->name('users.store');
     Route::post('users/edit/{user}', [UserController::class, 'update']);
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-});
+});*/
 
 Route::get('login', function () {
     return view('welcome');
@@ -67,3 +67,7 @@ Route::get('serialization',function(){
     $user = $users->find(4);
     dd($user->json());
 });
+
+//CLASE 18 Colecciones y serialización de datos
+Route::get('/', 'PageController@posts');
+Route::get('blog/{post}','PageController@post')->name('post');
