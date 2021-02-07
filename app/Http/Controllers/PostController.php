@@ -15,8 +15,20 @@ class PostController extends Controller
     public function index()
     {
         //
-        $Posts = Post::all();
+        $Posts = Post::paginate();
         return view('post.index',['Posts'=>$Posts,'title'=>'Post']);
+    }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function posts()
+    {
+        //
+        $Posts = Post::paginate();
+        return view('post.posts',['posts'=>$Posts,'title'=>'MY ARTICLE']);
     }
 
     /**
@@ -27,6 +39,7 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view('post.create',['title'=>'NEW ARTICLE']);
     }
 
     /**
@@ -38,6 +51,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        return $request;
     }
 
     /**
@@ -48,7 +62,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('post.show',['post' => $post,'title' =>'SHOW POST']);
     }
 
     /**

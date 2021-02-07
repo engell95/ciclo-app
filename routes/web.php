@@ -14,18 +14,27 @@ use App\Http\Controllers\UserController;
 |
 */
 
-/*Route::middleware(['auth'])->group(function () {
 
-    Route::get('/', [UserController::class, 'index']);
+//CLASE 20 VISTA INDEX Y BOTONES DE ACCION
+Auth::routes();
+Route::middleware(['auth'])->group(function () {
+
+    //Route::get('/', [UserController::class, 'index']);
+    Route::get('/',function(){
+        return view('home',['title' => 'home']);
+    });
     Route::post('users', [UserController::class, 'store'])->name('users.store');
     Route::post('users/edit/{user}', [UserController::class, 'update']);
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-});*/
+    Route::resource('post','PostController');
 
-Route::get('login', function () {
-    return view('welcome');
-})->name('login');
+    Route::get('posts','PostController@posts')->name('post.posts');
+
+});
+
+
+//Route::resource('verification', 'Auth.VerificationController');
 
 //CLASE 9 VALIDACIONES
 
@@ -48,7 +57,7 @@ Route::resource('employee','EmployeeController');
 
 //CLASE 13 trabajando con eloquent ORM relaciones
 
-Route::resource('post','PostController');
+
 
 //CLASE 14 Colecciones y serialización de datos
 use App\User;
@@ -69,5 +78,7 @@ Route::get('serialization',function(){
 });
 
 //CLASE 18 Colecciones y serialización de datos
-Route::get('/', 'PageController@posts');
+//Route::get('/', 'PageController@posts');
 Route::get('blog/{post}','PageController@post')->name('post');
+
+Route::get('/home', 'HomeController@index')->name('home');
