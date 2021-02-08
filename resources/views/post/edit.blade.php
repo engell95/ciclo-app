@@ -8,24 +8,25 @@
             @include('layouts.status')
             <div class='card shadow-lg'>
                 <div class="card-body">
-                    <h5 class="card-title border-bottom">NEW ARTICLE</h5>
-                    <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
+                    <h5 class="card-title border-bottom">EDIT ARTICLE</h5>
+                    <form action="{{route('post.update',$post)}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3 pt-2">
                             <label for="Title" class="form-label">Title *</label>
-                            <input type="text" class="form-control" id="Title" name="Title" value="{{old('Title')}}" placeholder="Title" required>
+                            <input type="text" class="form-control" id="Title" name="Title" value="{{old('Title',$post->title)}}" placeholder="Title" required>
                         </div>
                         <div class="mb-3">
                             <label for="Image" class="form-label">Image</label>
-                            <input class="form-control" type="file" id="Image" name="Image" value="{{old('Image')}}">
+                            <input class="form-control" type="file" id="Image" name="Image">
                         </div>
                         <div class="mb-3">
                             <label for="Content" class="form-label">Content *</label>
-                            <textarea class="form-control" rows="6" placeholder="Content the my article" id="Content" name="Content" required>{{old('Content')}}</textarea>
+                            <textarea class="form-control" rows="6" placeholder="Content the my article" id="Content" name="Content" required>{{old('Content',$post->body)}}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="Iframe" class="form-label">Iframe</label>
-                            <textarea class="form-control" placeholder="Content the my article" id="Iframe" name="Iframe">{{old('Iframe')}}</textarea>
+                            <textarea class="form-control" placeholder="Content the my article" id="Iframe" name="Iframe">{{old('iframe',$post->iframe)}}</textarea>
                         </div>
                         <div class="d-grid gap-2 d-md-block">
                             <a class="btn btn-secondary" type="button" href="{{ redirect()->back()->getTargetUrl() }}">

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
+
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -48,10 +50,23 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
-        return $request;
+
+        $post = Post::create([
+            'iduser'    => auth()->user()->id,
+            'title'     => $request->Title,
+            'body'      => $request->Content,
+            'iframe'    => $request->Iframe,
+            'slug'      => $request->slug
+        ]);
+
+        if($request->file('Image')){
+            $post->image = $request->file('Image')->store('posts','public');
+            $post->save();
+        }
+
+        return redirect(route('post.posts'))->with('status','Creado con Exito');
     }
 
     /**
@@ -62,7 +77,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('post.show',['post' => $post,'title' =>'SHOW POST']);
+        return view('post.show',['post' => $post,'title' =>'SHOW ARTICLE']);
     }
 
     /**
@@ -73,7 +88,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('post.edit',['post' => $post,'title' =>'EDIT ARTICLE']);
     }
 
     /**
@@ -83,9 +98,21 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->update([
+            'title'  => $request->Title,
+            'body'   => $request->Content,
+            'iframe' => $request->iframe
+        ]);
+
+        if($request->file('Image')){
+            Storage::disk('public')->delete($post->image);
+            $post->image = $request->file('Image')->store('posts','public');
+            $post->save();
+        }
+
+        return redirect(route('post.posts'))->with('status','Editado con Exito');
     }
 
     /**
@@ -96,7 +123,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Storage::disk('public')->delete($post->image);
         $post->delete();
-        return back();
+        return back()->with('status','Eliminado con Exito');
     }
 }
