@@ -103,7 +103,7 @@ class PostController extends Controller
         $post->update([
             'title'  => $request->Title,
             'body'   => $request->Content,
-            'iframe' => $request->iframe
+            'iframe' => $request->Iframe
         ]);
 
         if($request->file('Image')){

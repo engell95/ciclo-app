@@ -30,4 +30,11 @@ class Post extends Model
             ]
         ];
     }
+
+    public function getGetImageAttribute()
+    {
+        if($this->image){
+            return url("storage/$this->image");
+        }
+    }
 }
